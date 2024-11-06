@@ -1,0 +1,47 @@
+Comandos Postgre:
+-- Tabela Funcionario --
+
+CREATE TABLE Funcionario (
+	idFunc SERIAL PRIMARY KEY,
+	nome VARCHAR(100),
+	cargo VARCHAR(50),
+	salario DECIMAL(10,2)
+);
+
+-- Tabela Pedido --
+
+CREATE TABLE Pedido (
+	idPedido SERIAL PRIMARY KEY,
+	totalPedido INT,
+	dataPedido DATE,
+	totalValor DECIMAL(12, 2)
+);
+
+-- Tabela Produto -- 
+
+CREATE TABLE Produto (
+	idProd SERIAL PRIMARY KEY,
+	nomeProd VARCHAR(100),
+	descricao TEXT,
+	valorProd DECIMAL(10, 2)
+);
+
+-- Tabela PedProdFunc --
+
+CREATE TABLE PedProdFunc (
+    idProdPed SERIAL PRIMARY KEY,
+    idFunc INT,
+    idProd INT,
+    idPedido INT,
+    quantidade INT,
+    valorUnitario DECIMAL(10, 2),
+    valorTotal DECIMAL(10, 2),
+    FOREIGN KEY (idFunc) REFERENCES Funcionario(idFunc),
+    FOREIGN KEY (idProd) REFERENCES Produto(idProd),
+    FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido)
+);
+
+SELECT * FROM Produto ORDER BY idProd ASC;
+
+
+
